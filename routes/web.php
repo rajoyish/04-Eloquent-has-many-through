@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Project;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $projects = Project::with('deployments')
-        ->get();
-
-    return $projects;
-
     return view('welcome');
 });
+
+Route::resource('projects', ProjectController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
